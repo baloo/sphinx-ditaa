@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    zenexity-sphinx.ext.ditaa
+    sphinx.ext.ditaa
     ~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Allow ditaa-formatted graphs to by included in Sphinx-generated
