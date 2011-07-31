@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    zenexity-sphinx
+    ditaa-sphinx
     ~~~~~~~~~~~~~~~
 
-    Contains Zenexity specific sphinx features not activated by default
+    Contains ditaa specific sphinx features not activated by default
 
     :copyright: Copyright Arthur Gautier 2011
     :copyright: Copyright Zenxity 2011
