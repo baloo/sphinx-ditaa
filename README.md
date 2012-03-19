@@ -1,16 +1,15 @@
 This adds a basic ditaa builder for sphinx
 
 
-Usage
-=====
+Usage:
 
-.. ditaa::
-  +--------+   +-------+    +-------+
-  |        | --+ ditaa +--> |       |
-  |  Text  |   +-------+    |diagram|
-  |Document|   |!magic!|    |       |
-  |     {d}|   |       |    |       |
-  +---+----+   +-------+    +-------+
-      :                         ^
-      |       Lots of work      |
-      +-------------------------+
+    .. ditaa::
+      +--------+   +-------+    +-------+
+      |        | --+ ditaa +--> |       |
+      |  Text  |   +-------+    |diagram|
+      |Document|   |!magic!|    |       |
+      |     {d}|   |       |    |       |
+      +---+----+   +-------+    +-------+
+          :                         ^
+          |       Lots of work      |
+          +-------------------------+
