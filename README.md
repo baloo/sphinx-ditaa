@@ -1,7 +1,10 @@
-This adds a basic ditaa builder for sphinx
+#ditaa sphinx-doc extension
 
+This adds a basic ditaa builder for sphinx.
 
-Usage:
+Supports html and latex and latexpdf output.
+
+##Usage:
 
     .. ditaa::
       +--------+   +-------+    +-------+
@@ -13,3 +16,8 @@ Usage:
           :                         ^
           |       Lots of work      |
           +-------------------------+
+
+##Instalation
+
+it has got a setup.py script so just usual 'python setup.py build' and
+'install' will suffice.
