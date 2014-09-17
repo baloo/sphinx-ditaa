@@ -58,7 +58,7 @@ class Ditaa(Directive):
 
     def run(self):
         if self.arguments:
-            print self.arguments
+            print(self.arguments)
             document = self.state.document
             if self.content:
                 return [document.reporter.warning(
@@ -95,9 +95,9 @@ class Ditaa(Directive):
 
 def render_ditaa(self, code, options, prefix='ditaa'):
     """Render ditaa code into a PNG output file."""
-    hashkey = code.encode('utf-8') + str(options) + \
-              str(self.builder.config.ditaa) + \
-              str(self.builder.config.ditaa_args)
+    hashkey = code.encode('utf-8') + str(options).encode('utf-8') + \
+              str(self.builder.config.ditaa).encode('utf-8') + \
+              str(self.builder.config.ditaa_args).encode('utf-8')
     infname = '%s-%s.%s' % (prefix, sha(hashkey).hexdigest(), "ditaa")
     outfname = '%s-%s.%s' % (prefix, sha(hashkey).hexdigest(), "png")
 
@@ -113,7 +113,7 @@ def render_ditaa(self, code, options, prefix='ditaa'):
     ensuredir(path.dirname(outfullfn))
 
     # ditaa expects UTF-8 by default
-    if isinstance(code, unicode):
+    if isinstance(code, str):
         code = code.encode('utf-8')
 
     ditaa_args = [self.builder.config.ditaa]
@@ -122,14 +122,14 @@ def render_ditaa(self, code, options, prefix='ditaa'):
     ditaa_args.extend( [infullfn] )
     ditaa_args.extend( [outfullfn] )
 
-    f = open(infullfn, 'w')
+    f = open(infullfn, 'wb')
     f.write(code)
     f.close()
 
     try:
         self.builder.warn(ditaa_args)
         p = Popen(ditaa_args, stdout=PIPE, stdin=PIPE, stderr=PIPE)
-    except OSError, err:
+    except OSError as err:
         if err.errno != ENOENT:   # No such file or directory
             raise
         self.builder.warn('ditaa command %r cannot be run (needed for ditaa '
@@ -142,11 +142,11 @@ def render_ditaa(self, code, options, prefix='ditaa'):
         # Ditaa may close standard input when an error occurs,
         # resulting in a broken pipe on communicate()
         stdout, stderr = p.communicate(code)
-    except OSError, err:
+    except OSError as err:
         if err.errno != EPIPE:
             raise
         wentWrong = True
-    except IOError, err:
+    except IOError as err:
         if err.errno != EINVAL:
             raise
         wentWrong = True
@@ -165,7 +165,7 @@ def render_ditaa_html(self, node, code, options, prefix='ditaa',
                     imgcls=None, alt=None):
     try:
         fname, outfn = render_ditaa(self, code, options, prefix)
-    except DitaaError, exc:
+    except DitaaError as exc:
         raise nodes.SkipNode
 
     inline = node.get('inline', False)
@@ -193,7 +193,7 @@ def html_visit_ditaa(self, node):
 def render_ditaa_latex(self, node, code, options, prefix='ditaa'):
     try:
         fname, outfn = render_ditaa(self, code, options, prefix)
-    except DitaaError, exc:
+    except DitaaError as exc:
         raise nodes.SkipNode
 
     if fname is not None:

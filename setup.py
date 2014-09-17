@@ -42,7 +42,7 @@ setup(
     url='http://packages.python.org/sphinxcontrib-ditaa/',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-ditaa',
     license='BSD License',
-    author='Arthur Gautier'
+    author='Arthur Gautier',
     description='ditaa Sphinx extension',
     long_description=long_desc,
     zip_safe=False,
