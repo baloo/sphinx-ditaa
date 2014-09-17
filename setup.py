@@ -37,12 +37,11 @@ Usage example::
 requires = ['Sphinx>=1.0']
 
 setup(
-    name='sphinxcontrib-ditaa',
+    name='sphinx-ditaa',
     version='0.1',
-    url='http://packages.python.org/sphinxcontrib-ditaa/',
-    download_url='http://pypi.python.org/pypi/sphinxcontrib-ditaa',
+    url='https://github.com/baloo/sphinx-ditaa',
     license='BSD License',
-    author='Arthur Gautier'
+    author='Arthur Gautier',
     description='ditaa Sphinx extension',
     long_description=long_desc,
     zip_safe=False,
