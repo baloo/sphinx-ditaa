@@ -101,9 +101,10 @@ def render_ditaa(self, code, options, prefix='ditaa'):
     infname = '%s-%s.%s' % (prefix, sha(hashkey).hexdigest(), "ditaa")
     outfname = '%s-%s.%s' % (prefix, sha(hashkey).hexdigest(), "png")
 
-    inrelfn = posixpath.join(self.builder.imgpath, infname)
+    imgpath = self.builder.imgpath if hasattr(self.builder, 'imgpath') else ''
+    inrelfn = posixpath.join(imgpath, infname)
     infullfn = path.join(self.builder.outdir, '_images', infname)
-    outrelfn = posixpath.join(self.builder.imgpath, outfname)
+    outrelfn = posixpath.join(imgpath, outfname)
     outfullfn = path.join(self.builder.outdir, '_images', outfname)
 
     if path.isfile(outfullfn):
@@ -188,9 +189,26 @@ def render_ditaa_html(self, node, code, options, prefix='ditaa',
 def html_visit_ditaa(self, node):
     render_ditaa_html(self, node, node['code'], node['options'])
 
+
+def render_ditaa_latex(self, node, code, options, prefix='ditaa'):
+    try:
+        fname, outfn = render_ditaa(self, code, options, prefix)
+    except DitaaError, exc:
+        raise nodes.SkipNode
+
+    if fname is not None:
+        self.body.append('\\par\\includegraphics{%s}\\par' % outfn)
+    raise nodes.SkipNode
+
+
+def latex_visit_ditaa(self, node):
+    render_ditaa_latex(self, node, node['code'], node['options'])
+
+
 def setup(app):
     app.add_node(ditaa,
-                 html=(html_visit_ditaa, None))
+                 html=(html_visit_ditaa, None),
+                 latex=(latex_visit_ditaa, None))
     app.add_directive('ditaa', Ditaa)
     app.add_config_value('ditaa', 'ditaa', 'html')
     app.add_config_value('ditaa_args', [], 'html')
