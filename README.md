@@ -27,6 +27,7 @@ ditaa = 'ditaa'  # ditaa command
 
 write ditaa code in `rst` file.
 
+
 ```
     .. ditaa::
       +--------+   +-------+    +-------+
