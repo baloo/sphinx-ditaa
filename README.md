@@ -5,7 +5,7 @@ This adds a basic ditaa builder for sphinx
 
 ## Installation
 ```shell
-pip install sphinx-ditaa
+pip install -e .
 ```
 
 install [ditaa command](http://ditaa.sourceforge.net/)
@@ -27,6 +27,7 @@ ditaa = 'ditaa'  # ditaa command
 
 write ditaa code in `rst` file.
 
+
 ```
     .. ditaa::
       +--------+   +-------+    +-------+
@@ -39,3 +40,6 @@ write ditaa code in `rst` file.
           |       Lots of work      |
           +-------------------------+
 ```
+
+** Python 3 compatible **
+
