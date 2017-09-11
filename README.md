@@ -17,7 +17,7 @@ add `sphinx.ext.ditaa` to the `extensions` list in `conf.py`:
 ```python
 extensions = [
    ... other extensions here ...
-   sphinx.ext.ditaa
+   sphinxcontrib.ditaa
    ]
 
 # ditaa command. should be install ditaa
