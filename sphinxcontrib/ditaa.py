@@ -127,7 +127,6 @@ def render_ditaa(self, code, options, prefix='ditaa'):
     f.close()
 
     try:
-        self.builder.warn(ditaa_args)
         p = Popen(ditaa_args, stdout=PIPE, stdin=PIPE, stderr=PIPE)
     except OSError as err:
         if err.errno != ENOENT:   # No such file or directory
