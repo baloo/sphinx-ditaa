@@ -12,7 +12,7 @@ install [ditaa command](http://ditaa.sourceforge.net/)
 
 ## Using the Ditaa with Sphinx
 
-add `sphinx.ext.ditaa` to the `extensions` list in `conf.py`:
+add `sphinxcontrib.ditaa` to the `extensions` list in `conf.py`:
 
 ```python
 extensions = [
