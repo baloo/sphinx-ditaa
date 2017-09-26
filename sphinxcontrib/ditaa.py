@@ -11,6 +11,9 @@
     :license: BSD, see LICENSE for details.
 """
 
+# for python2, to behave like python3 (all str are unicode).
+from __future__ import unicode_literals
+
 import re
 import codecs
 import posixpath
@@ -28,7 +31,6 @@ from docutils.parsers.rst import directives
 from sphinx.errors import SphinxError
 from sphinx.util.osutil import ensuredir, ENOENT, EPIPE
 from sphinx.util.compat import Directive
-
 
 mapname_re = re.compile(r'<map id="(.*?)"')
 svg_dim_re = re.compile(r'<svg\swidth="(\d+)pt"\sheight="(\d+)pt"', re.M)
@@ -113,7 +115,7 @@ def render_ditaa(self, code, options, prefix='ditaa'):
     ensuredir(path.dirname(outfullfn))
 
     # ditaa expects UTF-8 by default
-    if isinstance(code, str):
+    if isinstance(code, unicode):
         code = code.encode('utf-8')
 
     ditaa_args = [self.builder.config.ditaa]
