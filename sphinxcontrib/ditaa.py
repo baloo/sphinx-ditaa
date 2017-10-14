@@ -32,6 +32,8 @@ from sphinx.errors import SphinxError
 from sphinx.util.osutil import ensuredir, ENOENT, EPIPE
 from sphinx.util.compat import Directive
 
+import sys
+
 mapname_re = re.compile(r'<map id="(.*?)"')
 svg_dim_re = re.compile(r'<svg\swidth="(\d+)pt"\sheight="(\d+)pt"', re.M)
 
@@ -115,8 +117,13 @@ def render_ditaa(self, code, options, prefix='ditaa'):
     ensuredir(path.dirname(outfullfn))
 
     # ditaa expects UTF-8 by default
-    if isinstance(code, unicode):
-        code = code.encode('utf-8')
+    # In Python 3, all strings are sequences of Unicode characters.
+    if sys.version_info < (3, 0):
+        if isinstance(code, unicode):
+            code = code.encode('utf-8')
+    else:
+        if isinstance(code, str):
+            code = code.encode('utf-8')
 
     ditaa_args = [self.builder.config.ditaa]
     ditaa_args.extend(self.builder.config.ditaa_args)
